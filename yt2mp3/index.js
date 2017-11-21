@@ -2,9 +2,9 @@
 
 let Scrap = require('./scrap');
 let PID = `` // playlist id here
-let foo = new Scrap(PID);
+let scrap = new Scrap(PID);
 
-foo.vidsFromPlaylist()
+scrap.vidsFromPlaylist()
 .then(
     (results) => {
         // handle
