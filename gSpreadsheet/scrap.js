@@ -1,7 +1,7 @@
 var request = require('request');
 var fs = require('fs');
 var cheerio = require('cheerio');
-const SECRETS = require('./secrets').module;
+const SECRETS = require('./secrets');
 
 request({
     url: `https://docs.google.com/spreadsheets/d/${SECRETS.sheetId}`
