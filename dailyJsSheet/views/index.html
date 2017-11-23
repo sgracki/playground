@@ -172,18 +172,14 @@
 							<tr>
 								<td>kolor tła:</td>
 								<td>
-									<select name="tlo" id="tlo" onchange="changeBg(this.value)">
-										<option value="#CEE6FE">#CEE6FE</option>
-										<option value="#BEFAA2">#BEFAA2</option>
-										<option value="#FEB6D1">#FEB6D1</option>
-									</select>
+									<select name="tlo" id="tlo" onchange="changeBg(this.value)"></select>
 								</td>
 							</tr>
 							<tr>
 								<td>dodaj kolor tła:</td>
 								<td>
 									<input type="text" name="dodaj_kolor" id="dodaj_kolor" /><br/>
-									<input type="button" id="btn_dodaj_kolor" value="dodaj kolor" />
+									<input type="button" onclick="addBgColor()" id="btn_dodaj_kolor" value="dodaj kolor" />
 								</td>
 							</tr>
 							<tr>
@@ -219,12 +215,36 @@
                 fontSizeContainer = document.getElementById('czcionka_aktualny_rozmiar'),
 				fontSizeNumeric = parseInt(bodyFontSize.replace('px', '')),
 				picPath = document.getElementById('obraz'),
-				pic = document.getElementById('zdjecie');
+				pic = document.getElementById('zdjecie'),
+				colorSelect = document.getElementById('tlo'),
+				bgColorForm = document.getElementById('dodaj_kolor');
+
+			var colorOptions = ['#CEE6FE','#BEFAA2','#FEB6D1'];
+
+			function addBgColor() {
+				var color = bgColorForm.value;
+				if(color.length > 0) {
+					colorOptions.push(color);
+					refreshBgColors();
+					bgColorForm.value = '';
+				}
+			}
 
             setDefaults = function() {
-                fontSizeContainer.innerHTML = bodyFontSize;
+				fontSizeContainer.innerHTML = bodyFontSize;
+				refreshBgColors();
 			}();
 			
+			function refreshBgColors() {
+				for(var i = 0; i < colorOptions.length; i++) {
+					var opt = document.createElement("option");
+					opt.text = opt.value = colorOptions[i];
+					colorSelect.add(opt);
+				}
+
+				colorOptions.length = 0;
+			}
+
 			function refreshFontInfo() {
 				bodyFontSize = window.getComputedStyle(body).fontSize;
 				fontSizeContainer.innerHTML = bodyFontSize;
