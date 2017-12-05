@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    </head>
+
+    <body>
+        <div id="out"></div>
+
+        <script>
+            var socket = io('http://localhost:3000');
+            const output = document.getElementById('out');
+            
+            socket.on('myEventName-super', (data) => {
+                output.innerHTML = JSON.stringify(data);
+            });
+        </script>
+    </body>
+</html>

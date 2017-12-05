@@ -24,7 +24,7 @@ function handleBody(b) {
 function fillCells(body, headers) {
     let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', l = 0, table = {}, $ = cheerio.load(body);
     return new Promise((resolve, reject) => {
-        var headerLength = $('table > tbody > tr').each((i, elem) => {
+        $('table > tbody > tr').each((i, elem) => {
             for(let j = 0; j < letters.length; j++) {
                 table[`${letters[j]}${i+1}`] = $($(elem).find('td').get(j)).html();
             }
